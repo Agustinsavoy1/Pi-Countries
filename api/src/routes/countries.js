@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
   const allCountries = await Country.findAll({
     include: Activity,
   });
+
   if (name) {
     const byName = await allCountries.filter((i) =>
       i.name.toLowerCase().startsWith(name.toLowerCase())
@@ -19,34 +20,38 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
   let countries;
-  if (id.length > 1) {
-    countries = await Country.findByPk({
-      include: Activity,
-    });
-    countries = {
-      id: countries.id,
-      name: countries.name,
-      image: countries.image,
-      continent: countries.continent,
-      capital: countries.capital,
-      subregion: countries.subregion,
-      area: countries.area,
-      population: countries.population,
-      activities: countries.activities.map((a) => {
-        return {
-          id: a.id,
-          name: a.name,
-          difficulty: a.difficulty,
-          duration: a.duration,
-          season: a.season,
-        };
-      }),
-    };
+
+  try {
+    if (id.length > 1) {
+      countries = await Country.findByPk(id, { include: Activity });
+
+      countries = {
+        id: countries.id,
+        name: countries.name,
+        image: countries.image,
+        continent: countries.continent,
+        capital: countries.capital,
+        subregion: countries.subregion,
+        area: countries.area,
+        population: countries.population,
+        activities: countries.activities.map((e) => {
+          return {
+            id: e.id,
+            name: e.name,
+            difficulty: e.difficulty,
+            duration: e.duration,
+            season: e.season,
+          };
+        }),
+      };
+    }
+    res.json(countries);
+  } catch (error) {
+    next(error);
   }
-  res.json(countries);
 });
 
 module.exports = router;
