@@ -37,7 +37,7 @@ export function getDetail(id) {
       dispatch({
         type: LOADING,
       });
-      const res = await axios.get(`http://localhost:3000/countries/${id}`);
+      const res = await axios.get(`http://localhost:3001/countries/${id}`);
       return dispatch({
         type: GET_DETAIL,
         payload: res.data,
