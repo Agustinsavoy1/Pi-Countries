@@ -1,0 +1,21 @@
+.card-img {
+  border-radius: 10px;
+  width: 350px;
+
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 350px 350px 350px;
+  grid-column-gap: 50px;
+  justify-content: center;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

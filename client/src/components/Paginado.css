@@ -1,0 +1,23 @@
+.paginado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border-radius: 100%;
+  background-color: brown;
+}
+
+.max-page {
+  color: red;
+}
+
+.current-page {
+  width: 30px;
+  height: 25px;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  color: #3a6ea7;
+}

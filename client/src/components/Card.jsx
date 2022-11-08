@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../actions";
 
 import flyingAirplane from "../images/flyingAirplane.svg";
-
+import "./Card.css";
 function Card(props) {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.details);
@@ -28,10 +28,14 @@ function Card(props) {
         {loading ? (
           <img src={flyingAirplane} />
         ) : details !== null ? (
-          <div>
+          <div className="detail-container">
             <div>
               <h2>{details.name}</h2>
-              <img src={details.image} alt={details.name} />
+              <img
+                src={details.image}
+                alt={details.name}
+                className="card-img"
+              />
             </div>
             <div>
               <div>

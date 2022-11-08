@@ -9,7 +9,7 @@ import {
   getCountries,
   byActivity,
 } from "../actions/index";
-
+import "./Home.css";
 import Paginado from "./Paginado";
 
 function Home() {
@@ -59,7 +59,7 @@ function Home() {
 
   return (
     <div>
-      <div>
+      <div className="filter-container">
         <div>
           <select onChange={handleOrderPopulation}>
             <option value="Max" key="Max">
@@ -120,7 +120,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <div>
+        <div className="card-container">
           {countries
             .slice(
               (currentPage - 1) * countriesPerPage,
@@ -130,8 +130,8 @@ function Home() {
               return (
                 <Link to={"/countries/" + e.id} key={e.id}>
                   <div>
-                    <p>{e.name}</p>
-                    <img src={e.image} alt={e.name} />
+                    <p className="card-name">{e.name}</p>
+                    <img src={e.image} alt={e.name} className="card-img" />
                   </div>
                 </Link>
               );

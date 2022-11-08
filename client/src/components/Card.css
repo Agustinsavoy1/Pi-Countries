@@ -1,0 +1,14 @@
+.card-img {
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.detail-container {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  gap: 75px;
+}
