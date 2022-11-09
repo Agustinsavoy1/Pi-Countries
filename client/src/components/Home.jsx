@@ -10,6 +10,7 @@ import {
   byActivity,
 } from "../actions/index";
 import "./Home.css";
+import { motion } from "framer-motion/dist/framer-motion";
 import Paginado from "./Paginado";
 
 function Home() {
@@ -129,10 +130,10 @@ function Home() {
             .map((e) => {
               return (
                 <Link to={"/countries/" + e.id} key={e.id}>
-                  <div>
-                    <p className="card-name">{e.name}</p>
+                  <motion.div>
+                    <motion.p className="card-name">{e.name}</motion.p>
                     <img src={e.image} alt={e.name} className="card-img" />
-                  </div>
+                  </motion.div>
                 </Link>
               );
             })}

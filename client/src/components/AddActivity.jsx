@@ -123,8 +123,8 @@ function AddActivity() {
   ];
 
   return (
-    <div>
-      <div>
+    <div style={{ background: "red" }}>
+      <div className="add-container">
         <div>
           <h2>Add Activity</h2>
           <div>

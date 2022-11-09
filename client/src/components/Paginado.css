@@ -6,11 +6,14 @@
 
 button {
   border-radius: 100%;
-  background-color: brown;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
 }
 
 .max-page {
-  color: red;
+  text-align: center;
+  height: 25px;
 }
 
 .current-page {

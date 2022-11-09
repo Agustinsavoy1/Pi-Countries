@@ -1,4 +1,14 @@
-.menu {
+.add-container {
   display: flex;
   justify-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border-radius: 0;
+  border: 0;
+  background-color: white;
 }

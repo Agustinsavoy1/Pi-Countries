@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   res.json(total);
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
 
   try {
@@ -39,7 +39,7 @@ router.post("/", async (req, res, next) => {
     });
     res.json(activityWithCountry);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 });
 

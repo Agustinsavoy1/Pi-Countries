@@ -1,0 +1,13 @@
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-top: 150px;
+  gap: 30px;
+  flex-direction: column;
+}
+
+h1 {
+  padding-top: 50px;
+}

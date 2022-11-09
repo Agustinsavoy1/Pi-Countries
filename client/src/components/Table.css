@@ -1,0 +1,26 @@
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
+img {
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+button {
+  border-radius: 100%;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+}

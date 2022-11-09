@@ -1,6 +1,3 @@
-nav {
-  width: 100vw;
-}
 .nav-menu {
   width: 100vw;
   display: flex;
@@ -8,4 +5,12 @@ nav {
   gap: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+nav {
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
 }

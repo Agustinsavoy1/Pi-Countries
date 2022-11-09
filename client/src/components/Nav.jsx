@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getByName } from "../actions";
 import "./Nav.css";
-//import style from "../styles/Nav.module.scss";
+
 //import earth from "../images/earth.svg";
 //import { AiOutlineSearch } from "react-icons/ai";
 
@@ -26,6 +26,8 @@ function Nav() {
               {/* <img src={earth}  alt="earth" /> */}
             </Link>
             <Link to="/activity">Add Activity</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/table">Table</Link>
             <div>
               <input
                 type="text"
@@ -37,10 +39,9 @@ function Nav() {
           </>
         ) : location.pathname === "/activity" ? (
           <div>
-            <Link to="/countries/">
-              {/* <img src={earth} className={style.img} alt="earth" /> */}
-            </Link>
             <Link to="/countries/">Home</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/table">Table</Link>
           </div>
         ) : (
           <>
@@ -49,6 +50,8 @@ function Nav() {
             </Link>
             <Link to="/countries/">Home</Link>
             <Link to="/activity">Add Activity</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/table">Table</Link>
           </>
         )}
       </div>

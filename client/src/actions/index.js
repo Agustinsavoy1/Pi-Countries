@@ -52,7 +52,7 @@ export function postActivity(payload) {
   return async function () {
     try {
       const res = await axios.post(
-        `http://localhost:3001/countries/activity/`,
+        `https://localhost:3001/countries/activity/`,
         payload
       );
       return res;
