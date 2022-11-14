@@ -24,18 +24,18 @@ function Card(props) {
 
   return (
     <div>
-      <div>
+      <div className="card-detail">
         {loading ? (
           <img src={flyingAirplane} />
         ) : details !== null ? (
-          <div className="detail-container">
-            <div>
-              <h2>{details.name}</h2>
+          <div className="detail-container ">
+            <div className="detail ">
               <img
                 src={details.image}
                 alt={details.name}
                 className="card-img"
               />
+              <h2>{details.name}</h2>
             </div>
             <div>
               <div>

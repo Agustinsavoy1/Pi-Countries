@@ -10,7 +10,6 @@ import {
   byActivity,
 } from "../actions/index";
 import "./Home.css";
-import { motion } from "framer-motion/dist/framer-motion";
 import Paginado from "./Paginado";
 
 function Home() {
@@ -34,24 +33,28 @@ function Home() {
     e.preventDefault();
     dispatch(byOrder(e.target.value));
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
   function handleContinents(e) {
     e.preventDefault();
     dispatch(byContinent(e.target.value));
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
   function handleOrderPopulation(e) {
     e.preventDefault();
     dispatch(byPopulation(e.target.value));
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
   function handleActivity(e) {
     e.preventDefault();
     dispatch(byActivity(e.target.value));
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
   useEffect(() => {
@@ -59,7 +62,7 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="home">
       <div className="filter-container">
         <div>
           <select onChange={handleOrderPopulation}>
@@ -120,7 +123,7 @@ function Home() {
           </select>
         </div>
       </div>
-      <div>
+      <div className="card-section">
         <div className="card-container">
           {countries
             .slice(
@@ -130,16 +133,16 @@ function Home() {
             .map((e) => {
               return (
                 <Link to={"/countries/" + e.id} key={e.id}>
-                  <motion.div>
-                    <motion.p className="card-name">{e.name}</motion.p>
-                    <img src={e.image} alt={e.name} className="card-img" />
-                  </motion.div>
+                  <div className="country-card">
+                    <img src={e.image} alt={e.name} className="home-card-img" />
+                    <p>{e.name}</p>
+                  </div>
                 </Link>
               );
             })}
         </div>
       </div>
-      <div>
+      <div className="paginado-content">
         <Paginado
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

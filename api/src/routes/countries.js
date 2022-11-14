@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
   let countries;
 
@@ -50,7 +50,7 @@ router.get("/:id", async (req, res, next) => {
     }
     res.json(countries);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 });
 

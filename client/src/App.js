@@ -6,8 +6,7 @@ import Home from "./components/Home";
 import Card from "./components/Card";
 import AddActivity from "./components/AddActivity";
 import Nav from "./components/Nav";
-import Contact from "./components/Contact";
-import Table from "./components/Table";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,8 +16,7 @@ function App() {
       <Route exact path="/countries" component={Home} />
       <Route exact path="/countries/:id" component={Card} />
       <Route exact path="/activity" component={AddActivity} />
-      <Route exact path="/table" component={Table} />
-      <Route exact path="/contact" component={Contact} />
+      <Footer />
     </BrowserRouter>
   );
 }

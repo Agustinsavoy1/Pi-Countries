@@ -12,8 +12,12 @@ const LandingPage = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h1>Welcome to my individual project</h1>
-        <Link to={"/countries"}>Ingresar</Link>
+        <div className="content-container">
+          <h1>Welcome to my individual project</h1>
+          <Link to={"/countries"}>
+            <button>Ingresar</button>
+          </Link>
+        </div>
       </div>
     </>
   );

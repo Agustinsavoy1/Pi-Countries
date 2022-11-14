@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Paginado.css";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 function Paginado({ currentPage, setCurrentPage, max }) {
   const [input, setInput] = useState(1);
@@ -38,7 +37,7 @@ function Paginado({ currentPage, setCurrentPage, max }) {
   return (
     <div className="paginado">
       <button disabled={currentPage <= 1} onClick={previousPage}>
-        <HiArrowLeft />
+        ←
       </button>
       <input
         className="current-page"
@@ -50,7 +49,7 @@ function Paginado({ currentPage, setCurrentPage, max }) {
       />
       <p className="max-page"> of {max} </p>
       <button disabled={currentPage >= Math.ceil(max)} onClick={nextPage}>
-        <HiArrowRight />
+        →
       </button>
     </div>
   );

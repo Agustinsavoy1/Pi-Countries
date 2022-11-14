@@ -20,38 +20,31 @@ function Nav() {
   return (
     <nav>
       <div className="nav-menu">
-        {location.pathname === "/countries/" ? (
+        {location.pathname === "/countries/" ||
+        location.pathname === "/countries" ? (
           <>
-            <Link to="/countries/">
-              {/* <img src={earth}  alt="earth" /> */}
-            </Link>
             <Link to="/activity">Add Activity</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/table">Table</Link>
+
             <div>
               <input
                 type="text"
                 placeholder="Country..."
                 onChange={handleChange}
               />
-              {/* <AiOutlineSearch className={style.submit} /> */}
+              {/* <AiOutlineSearch className="" /> */}
             </div>
           </>
         ) : location.pathname === "/activity" ? (
           <div>
             <Link to="/countries/">Home</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/table">Table</Link>
           </div>
         ) : (
           <>
             <Link to="/countries/">
-              {/* <img src={earth} className={style.img} alt="earth" /> */}
+              {/* <img src={earth} className="" alt="earth" /> */}
             </Link>
             <Link to="/countries/">Home</Link>
             <Link to="/activity">Add Activity</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/table">Table</Link>
           </>
         )}
       </div>
