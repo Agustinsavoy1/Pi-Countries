@@ -2,16 +2,74 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getActivity, getCountries, postActivity } from "../actions/index";
-import Swal from "sweetalert2";
 import "./AddActivity.css";
 
 function valida(input) {
   let errors = {};
-  if (!input.name) {
+
+  console.log(input.countries);
+  console.log(input.countries[0]);
+
+  if (!input.name || input.name === "") {
     errors.name = "Name required";
+  } else if (/[0-9]/.test(input.name)) {
+    errors.name = "Invalid name";
   }
+
+  if (!input.season) {
+    errors.season = "Season required";
+  } else if (!["Summer", "Spring", "Winter", "Autumn"].includes(input.season)) {
+    errors.season = "Invalid season";
+  }
+
+  if (!input.difficulty) {
+    errors.difficulty = "Difficulty required";
+  } else if (!/\d/.test(input.difficulty)) {
+    errors.difficulty = "Difficulty must be a number";
+  } else if (input.difficulty < 1 || input.difficulty > 5) {
+    errors.difficulty = "Must be a number between 1 and 5";
+  }
+
+  if (!input.duration) {
+    errors.duration = "Debe ingresar una duracion";
+  } else if (!/\d/.test(input.duration)) {
+    errors.duration = "Debe ser un numero";
+  } else if (input.duration < 1 || input.duration > 24)
+    errors.duration = "Debe ser un numero entre 1 y 24";
+
+  if (!/^[A-Z]{3}$/.test(input.countries) || !input.countries) {
+    errors.countries = "Debe ser un codigo valido";
+  }
+
+  // if (!input.countries) {
+  //   errors.countries = "Debe ingresar un codigo de pais";
+  // } else
+
   return errors;
 }
+
+// function validateString(input) {
+//   let errors = {};
+//   if (input.name) {
+//     console.log(input.name, "soy input.name");
+//     //console.log(input, "dasjhdfaskjdas");
+//   }
+//   if (!/^[a-záéíóú\s]*$/i !== input.name) {
+//     console.log(input.name, "input.name no es una letra");
+//   }
+//   return errors;
+// }
+
+// function validateNumber(input) {
+//   let errors = {};
+//   if (input.name) {
+//     console.log(input.name, "soy input.name");
+//   }
+//   if (!/^[0-9]*$/ === input.name) {
+//     console.log(input.name, "input.name no es una letra");
+//   }
+//   return errors;
+// }
 
 function AddActivity() {
   const dispatch = useDispatch();
@@ -50,6 +108,14 @@ function AddActivity() {
       [e.target.name]: e.target.value,
     });
     setErrors(
+      // validateString({
+      //   ...input,
+      //   [e.target.name]: e.target.value,
+      // }),
+      // validateNumber({
+      //   ...input,
+      //   [e.target.name]: e.target.value,
+      // })
       valida({
         ...input,
         [e.target.name]: e.target.value,
@@ -62,6 +128,12 @@ function AddActivity() {
       ...input,
       countries: [...input.countries, id.target.value],
     });
+    setErrors(
+      valida({
+        ...input,
+        [id.target.name]: id.target.value,
+      })
+    );
   }
 
   function handleSeason(e) {
@@ -69,6 +141,12 @@ function AddActivity() {
       ...input,
       season: e.target.value,
     });
+    setErrors(
+      valida({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleSelctDifficulty(e) {
@@ -76,6 +154,12 @@ function AddActivity() {
       ...input,
       difficulty: e.target.value,
     });
+    setErrors(
+      valida({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleSelectDuration(e) {
@@ -83,6 +167,12 @@ function AddActivity() {
       ...input,
       duration: e.target.value,
     });
+    setErrors(
+      valida({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleDelete(e) {
@@ -92,11 +182,29 @@ function AddActivity() {
     });
   }
 
+  function finalValidate(input) {
+    let error = {};
+    if (
+      !input.name ||
+      !input.difficulty ||
+      !input.duration ||
+      !input.season ||
+      input.countries.length === 0
+    ) {
+      error.msg = "Debes completar todos los campos";
+      alert(error.msg);
+      return error;
+    } else {
+      history.push("/countries/");
+      alert("enviado");
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+
     dispatch(postActivity(input));
 
-    /*  alert('enviado') */
     setInput({
       name: "",
       difficulty: "",
@@ -104,15 +212,21 @@ function AddActivity() {
       season: "",
       countries: [],
     });
-    history.push("/countries/");
-    Swal.fire(
-      {
-        title: "Activity created successfully",
-        confirmButtonColor: "#34a57f",
-      } /* ).then(function(){ 
-                window.location.replace('');
-            } */
-    );
+    finalValidate(input);
+
+    // if (
+    //   !input.name ||
+    //   !input.difficulty ||
+    //   !input.duration ||
+    //   !input.season ||
+    //   input.countries.length === 0
+    // ) {
+    //   let errors = {};
+    //   errors.msg = "Debes completar todos los campos";
+    // } else {
+    //   history.push("/countries/");
+    //   alert("enviado");
+    // }
   }
 
   const season = ["Winter", "Spring", "Autumn", "Summer"];
@@ -137,13 +251,12 @@ function AddActivity() {
                   name="name"
                   onChange={handleChange}
                   placeholder="Activity name..."
-                  required
                 />
                 {errors.name && <p>{errors.name}</p>}
               </div>
               <div>
                 <label>Season: </label>
-                <select onChange={handleSeason} required>
+                <select onChange={handleSeason}>
                   <option value="" hidden>
                     Select season
                   </option>
@@ -153,10 +266,11 @@ function AddActivity() {
                     </option>
                   ))}
                 </select>
+                {errors.season && <p>{errors.season}</p>}
               </div>
               <div>
                 <label>Difficulty: </label>
-                <select onChange={handleSelctDifficulty} required>
+                <select onChange={handleSelctDifficulty}>
                   <option value="" hidden>
                     Choose an option
                   </option>
@@ -166,10 +280,11 @@ function AddActivity() {
                     </option>
                   ))}
                 </select>
+                {errors.difficulty && <p>{errors.difficulty}</p>}
               </div>
               <div>
                 <label>Duration: </label>
-                <select onChange={handleSelectDuration} required>
+                <select onChange={handleSelectDuration}>
                   <option value="" hidden>
                     Choose an option
                   </option>
@@ -179,11 +294,12 @@ function AddActivity() {
                     </option>
                   ))}
                 </select>
+                {errors.duration && <p>{errors.duration}</p>}
               </div>
               <div>
                 <label>Country: </label>
-                <select onChange={handleSelect} required>
-                  <option value="" hidden>
+                <select onChange={handleSelect}>
+                  <option value=" " hidden>
                     Select country
                   </option>
                   {countries.map((e) => (
@@ -192,6 +308,7 @@ function AddActivity() {
                     </option>
                   ))}
                 </select>
+                {errors.countries && <p>{errors.countries}</p>}
               </div>
               <div>
                 <ul>
@@ -207,8 +324,11 @@ function AddActivity() {
                   </li>
                 </ul>
               </div>
-              <button type="submit">Add Activity</button>
+              <button type="submit" disabled={!errors ? true : false}>
+                Add Activity
+              </button>
             </form>
+            {/* {errors.msg && <p>{errors.msg}</p>} */}
           </div>
         </div>
       </div>

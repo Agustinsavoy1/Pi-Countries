@@ -134,7 +134,11 @@ function Home() {
               return (
                 <Link to={"/countries/" + e.id} key={e.id}>
                   <div className="country-card">
-                    <img src={e.image} alt={e.name} className="home-card-img" />
+                    <img
+                      src={e.image}
+                      alt={e.name}
+                      className="home-card-img floating shadow"
+                    />
                     <p>{e.name}</p>
                   </div>
                 </Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getByName } from "../actions";
@@ -18,7 +18,13 @@ function Nav() {
   }
 
   return (
-    <nav>
+    <nav
+      style={
+        window.location.pathname === "/"
+          ? { visibility: "hidden" }
+          : { visibility: "visible" }
+      }
+    >
       <div className="nav-menu">
         {location.pathname === "/countries/" ||
         location.pathname === "/countries" ? (

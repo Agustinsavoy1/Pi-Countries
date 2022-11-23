@@ -16,6 +16,9 @@ nav {
   background: #2b3945;
 }
 
+.hidden {
+  display: none;
+}
 .input-container {
   display: flex;
   justify-content: center;

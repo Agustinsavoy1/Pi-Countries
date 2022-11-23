@@ -8,13 +8,10 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-
   align-items: center;
   align-content: center;
-
   padding-top: 4%;
   margin: 4%;
-
   min-height: 200px;
   width: 250px;
   background: rgba(255, 255, 255, 0.2);
@@ -23,6 +20,29 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.country-card img:hover {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    transform: translate(0, -10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: translate(0, 0px);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .card-section {
@@ -62,4 +82,25 @@
   flex-direction: column;
   align-items: center;
   align-content: center;
+}
+
+@media (max-width: 1360px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-column-gap: 50px;
+    justify-content: center;
+    width: 100%;
+    gap: 100px;
+  }
+}
+
+@media (max-width: 890px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: 200px;
+    grid-column-gap: 100px;
+    justify-content: center;
+    width: 100%;
+  }
 }
